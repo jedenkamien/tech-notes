@@ -1,2 +1,2 @@
 ## tech-notes
-A banch of miscellaneous **tech notes** covering various topics.
+A batch of miscellaneous **tech notes** covering various topics.
