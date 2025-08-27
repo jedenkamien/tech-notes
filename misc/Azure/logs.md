@@ -1,5 +1,5 @@
 **Logs for Azure Function**
-
-  traces
-  
+```kql
+  traces  
   | where message contains "12345"
+```
