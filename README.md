@@ -4,7 +4,7 @@ A batch of miscellaneous **tech notes** covering various topics.
 Example note:
 
 
-## How to view logs sent by EF to the Database?
+### How to view logs sent by EF to the Database?
 Just add this code at the end of the class inheriting from DbContext:
 
 `protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -44,7 +44,7 @@ The controller can be as simple as this:
  ```
 
 
-### How the logs can look like
+#### How the logs can look like
 Logs can be as simple as in the case of .Any():
 
 ```sql
@@ -60,7 +60,7 @@ Logs can be as simple as in the case of .Any():
 In the case of auto-includes or includes, they can have many joins and subqueries.
 
 
-## Case study: An interesting behaviour - dealing with a copy of a fetched collection
+### Case study: An interesting behaviour - dealing with a copy of a fetched collection
 
 ```csharp
 public async Task<IList<Chapters>> GetAllChaptersForABook(MessageWithBook message, CancellationToken cancellationToken)
@@ -87,7 +87,7 @@ This surprisingly works, although this is only a copy (not stricte sensum) of th
 
 
 
-## Case study: How does IgnoreAutoIncludes seem not to work under test circumstances? How does EF remember former database queries results?
+### Case study: How does IgnoreAutoIncludes seem not to work under test circumstances? How does EF remember former database queries results?
 `MyGrandParentEntity` has a bunch of `t.Navigation(e => e.ChildEntity).AutoInclude().UsePropertyAccessMode(PropertyAccessMode.Property);` autoincludes in `DbContext`.
 
 `var temp = repository.Query<MyGrandParentEntity>().First();
@@ -107,17 +107,17 @@ Now `temp2` does not have children included.
 So EF, when taking some Entity from Db, first checks whether the appropriate entity is not already there in memory - if so, it can effortlessly take it from memory. That's why `IgnoreAutoIncludes` does not succeed, but actually no additional effort is suffered indeed. Detaching from any downloaded entities stored in variables will eventually solve the problem.
 
 
-## How to detach from a fetched entity?
+### How to detach from a fetched entity?
 `dbContext.Entry(entity).State = EntityState.Detached;`
 
 
-## Left Join subquery vs ordinary Left Join
+### Left Join subquery vs ordinary Left Join
 From what I read, EF prefers left join subquery instead of regular left join.
 
 Supposedly, with small data sets, the latter is more efficient, but with large ones, the former is much better.
 
 
-## DbContext - some basic considerations about relationships
+### DbContext - some basic considerations about relationships
 `modelBuilder.Entity<DocumentHeader>()
    .HasOne<Document>(dh => dh.Document)
    .WithOne(d => d.DocumentHeader)
@@ -131,7 +131,7 @@ _"Configures whether this is a required relationship (i.e. whether the foreign k
 
 In this case, `OnDelete` refers to the action that should happen to the Dependent when the Principal is deleted.
 
-## EF migrations not that obvious sometimes
+### EF migrations not that obvious sometimes
 The topic of object relationships in EF code first is complex.
 
 You can configure many settings without complaint from EF at first, but then EF itself reports many errors and problems.
@@ -140,7 +140,7 @@ EF allows too much during migration creation, but when it comes to applying the 
 
 You might sometimes think that you thought you understood EF very well, but it appears that apparently not :)
 
-## OnModelCreation and implicit conventions
+### OnModelCreation and implicit conventions
 We specify each column in the context, although it's not necessary.
 
 The snapshot can figure out much.
@@ -155,7 +155,7 @@ Putting everything there isn't a disaster, but the file grows.
 
 If you don't mention something in `OnModelCreation`, it simply won't override standard conventions.
 
-## Mixing model and persistence - unrecommended
+### Mixing model and persistence - unrecommended
 Many projects also configure most things using attributes over properties in models.
 
 I don't like that approach.
