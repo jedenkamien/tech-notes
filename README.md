@@ -11,7 +11,7 @@ A batch of miscellaneous **tech notes** covering various topics.
 -------------------------------------------------------------------------------------------------------------------------
 
 
-Example note:
+## Example note:
 
 
 ### How to view logs sent by EF to the Database?
