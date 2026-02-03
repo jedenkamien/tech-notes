@@ -1,6 +1,8 @@
 ## tech-notes
 A batch of miscellaneous **tech notes** covering various topics.
 
+Head to the ```misc``` folder to see their contents.
+
 
 -------------------------------------------------------------------------------------------------------------------------
 
