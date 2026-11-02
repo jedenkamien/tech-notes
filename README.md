@@ -1,8 +1,20 @@
 ## tech-notes
-A batch of miscellaneous **tech notes** covering various topics.
+A personal collection of engineering notes captured while investing real software development problems.
 
-Head to the ```misc``` folder to see their contents.
+Unlike a structured knowledge base, this repository focuses on specific issues, surprising behaviors, debugging sessions and implementation details encountered during day-to-day work.
 
+Topics are intentionally diverse and may range from Entity Framework internals to database behavior, application architecture, testing, Azure services or development tooling.
+
+The goal is not to provide comprehensive documentation, but to preserve practical findings and interesting case studies that may be useful in future projects.
+
+## Why this repository exists
+Many of these notes originated while:
+- debugging unexpected application behaviour,
+- investigating framework internals, 
+- validating assumptions about platform features,
+- documenting lessons learned from real projects. 
+
+The repository serves both as a personal engineering journal and as a collection of practical case studies.
 
 -------------------------------------------------------------------------------------------------------------------------
 
