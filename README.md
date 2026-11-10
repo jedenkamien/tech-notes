@@ -58,38 +58,38 @@ return;
 The controller can be as simple as this:
 
 ```csharp
- [ApiController]
-	`public class TestApiController : ControllerBase
+[ApiController]
+public class TestApiController : ControllerBase
+{
+	private readonly IMediator _mediator;
+	private readonly IMyService _myService;
+
+	public TestApiController(IMediator mediator, IMyService myService)
 	{
-    		private readonly IMediator _mediator;
-    		private readonly IMyService _myService;
-
-    		public TestApiController(IMediator mediator, IMyService myService)
-    		{
-        		_mediator = mediator;
-        		_myService = myService;
-    		}
-
-    		[HttpGet("DoSomething")]
-    		public async Task DoSomething(long canBeNoArgumentAtAllInTheEnd)
-    		{
-        			await _myService.CheckDataAgainstAllowedLimits();
-    		}
+		_mediator = mediator;
+		_myService = myService;
 	}
- ```
+
+	[HttpGet("DoSomething")]
+	public async Task DoSomething(long canBeNoArgumentAtAllInTheEnd)
+	{
+			await _myService.CheckDataAgainstAllowedLimits();
+	}
+}
+```
 
 
 #### How the logs can look like
-Logs can be as simple as in the case of .Any():
+Logs can be as simple as the following, in the case of the `.Any()` query:
 
 ```sql
-	SELECT CASE
-      	WHEN EXISTS (
-          	SELECT 1
-          	FROM MyTable AS [t]
-          	WHERE [t].[SomethingId] = CAST(1 AS bigint)) THEN CAST(1 AS bit)
-      	ELSE CAST(0 AS bit)
-  	END
+SELECT CASE
+	WHEN EXISTS (
+		SELECT 1
+		FROM MyTable AS [t]
+		WHERE [t].[SomethingId] = CAST(1 AS bigint)) THEN CAST(1 AS bit)
+	ELSE CAST(0 AS bit)
+END
 ```
 
 In the case of auto-includes or includes, they can have many joins and subqueries.
