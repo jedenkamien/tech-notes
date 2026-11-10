@@ -41,14 +41,16 @@ Instead, you can create a simple controller that directly calls my method and th
 
 ```csharp
 var temp = _repository.Query<GrandPaEntity>()
-				.IgnoreAutoIncludes()
-				.Where(gpe => gpe.AssetId == 1).ToList();
+	.IgnoreAutoIncludes()
+	.Where(gpe => gpe.AssetId == 1)
+	.ToList();
 
 var temp2 = _repository.Query<GrandPaEntity>()
-            	.Where(gpe => gpe.AssetId == 1).ToList();
+	.Where(gpe => gpe.AssetId == 1)
+	.ToList();
 
 var temp3 = _repository.Query<GrandPaEntity>()
-				.Any(gpe => gpe.AssetId == 1);
+	.Any(gpe => gpe.AssetId == 1);
 
 return;
 ```
