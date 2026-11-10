@@ -31,18 +31,22 @@ The repository serves both as a personal engineering journal and as a collection
 ### How to view logs sent by EF to the Database?
 Just add this code at the end of the class inheriting from DbContext:
 
-`protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    => optionsBuilder.LogTo(message => Debug.WriteLine(message));`
+```csharp
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    => optionsBuilder.LogTo(message => Debug.WriteLine(message));
+```
 
 **But:** if you're running something from a test, remember that there might often be logger stubs, and you'd need to create a real one (it's mentioned on StackOverflow, but I haven't tried it).
 Instead, you can create a simple controller that directly calls my method and there I set the queries I'm interested in, e.g.:
 
-`var temp = _repository.Query<GrandPaEntity>().IgnoreAutoIncludes()
+```csharp
+var temp = _repository.Query<GrandPaEntity>().IgnoreAutoIncludes()
             	.Where(gpe => gpe.AssetId == 1).ToList();
         	var temp2 = _repository.Query<GrandPaEntity>()
             	.Where(gpe => gpe.AssetId == 1).ToList();
         	var temp3 = _repository.Query<GrandPaEntity>().Any(gpe => gpe.AssetId == 1);
-        	return;`
+        	return;
+```
 
 The controller can be as simple as this:
 
