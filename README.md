@@ -40,12 +40,17 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 Instead, you can create a simple controller that directly calls my method and there I set the queries I'm interested in, e.g.:
 
 ```csharp
-var temp = _repository.Query<GrandPaEntity>().IgnoreAutoIncludes()
+var temp = _repository.Query<GrandPaEntity>()
+				.IgnoreAutoIncludes()
+				.Where(gpe => gpe.AssetId == 1).ToList();
+
+var temp2 = _repository.Query<GrandPaEntity>()
             	.Where(gpe => gpe.AssetId == 1).ToList();
-        	var temp2 = _repository.Query<GrandPaEntity>()
-            	.Where(gpe => gpe.AssetId == 1).ToList();
-        	var temp3 = _repository.Query<GrandPaEntity>().Any(gpe => gpe.AssetId == 1);
-        	return;
+
+var temp3 = _repository.Query<GrandPaEntity>()
+				.Any(gpe => gpe.AssetId == 1);
+
+return;
 ```
 
 The controller can be as simple as this:
